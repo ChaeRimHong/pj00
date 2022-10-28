@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ezen.pj99.Service">
+
+	<resultMap type="com.ezen.pj99.RecordDTO" id="rdto">
+		<result property="rno" column="rno" />
+		<result property="rposter" column="rposter" />
+		<result property="rtitle" column="rtitle" />
+		<result property="rpd" column="rpd" />
+		<result property="ractor" column="ractor" />
+		<result property="rjenre" column="rjenre" />
+	</resultMap>
+
+	<insert id="recordin">
+		insert into pj09_record
+		values(RNO_SEQ.nextval,
+		#{param1}, #{param2}, #{param3}, #{param4},
+		#{param5})
+	</insert>
+
+	<select id="recordout" resultMap="rdto">
+		select * from pj09_record
+	</select>
+
+	<select id="record_detail" resultMap="rdto">
+		select * from pj09_record
+		where rno=#{param1}
+	</select>
+
+
+	<!--페이징처리 2222222222 -->
+	<select id="cntnotice" resultType="int">
+		select count(*)from
+		pj09_record
+	</select>
+
+	<select id="selectnotice" resultType="com.ezen.pj99.RecordDTO">
+		select * from (
+		select rownum rn, A.* from(
+		select * from pj09_record order by rno DESC,rtitle asc)A)
+		where rn between #{start} AND #{end}
+	</select>
+
+
+	<!-- search -->
+	<select id="comment_search" resultType="com.ezen.pj99.RecordDTO">
+		select * from pj09_record
+		where rtitle like '%'||#{param1}||'%'
+		or ractor like '%'||#{param1}||'%'
+		<!-- pj09_record에서 제목,내용 중에 맞는 거 찾는 sql 문 만들어야 함 -->
+	</select>
+
+
+</mapper>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ezen.pj99.DiscService">
+<resultMap type="com.ezen.pj99.DiscDTO" id="ddto">
+   <result  property="dnum" column="dnum"/>
+   <result  property="dtitle" column="dtitle"/>
+   <result  property="ddate" column="ddate"/>
+   <result  property="mtitle" column="mtitle"/>
+   <result  property="dcontent" column="dcontent"/>
+   <result  property="dreadcnt" column="dreadcnt"/>
+   <result  property="dreproot" column="dreproot"/>
+   <result  property="drepstep" column="drepstep"/>
+   <result  property="drepindent" column="drepindent"/>
+   
+</resultMap>
+
+	<insert id="disc_input">
+		insert into pj09_disc
+		values(pj09_seq.nextval,#{param1},#{param2},#{param3},#{param4},0,pj09_SEQ.CURRVAL,0,0)
+	</insert>
+
+	<select id="disc_list" resultMap="ddto">
+		select * from pj09_disc
+	</select>
+	<select id="disc_detail" parameterType="String" resultMap="ddto">
+		select * from pj09_disc where dnum = #{dnum}
+	</select>
+	<update id="dreadcnt">
+		update pj09_disc set dreadcnt=dreadcnt+1 where dnum=#{param1}
+	</update>
+	<select id="disc_reply" resultMap="ddto">
+		select * from pj09_disc where dnum=#{param1}
+	</select>
+	<select id="update1" resultMap="ddto">
+		select * from pj09_disc where dnum = #{param1}
+	</select>
+	<update id="update2">
+		update pj09_disc set dtitle=#{param2},ddate=#{param3},mtitle=#{param4},dcontent=#{param5} where dnum=#{param1}
+	</update> 
+
+	<!-- 페이징처리 22222222 -->
+	<select id="cntnotice" resultType="int">
+		select count(*)from
+		pj09_disc
+	</select>
+	
+	<select id="selectnotice" resultType="com.ezen.pj99.DiscDTO">
+	select * from (
+	 select rownum rn, A.* from(
+	 select * from pj09_disc order by dnum DESC, dtitle asc)A)
+	 where rn between #{start} AND #{end}
+	</select>
+	
+	
+<!-- search -->
+<select id="discussion_search" resultType="com.ezen.pj99.DiscDTO">
+	select * from pj09_disc 
+	where dtitle like '%'||#{param1}||'%'
+    or mtitle like '%'||#{param1}||'%'
+    
+	<!-- pj09_disc에서 제목,내용 중에 맞는 거 찾는 sql 문 만들어야 함 -->
+</select>
+
+	  
+</mapper>

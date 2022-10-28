@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+   <definition name="baseLayout" template="/WEB-INF/views/layout.jsp">
+		<put-attribute name="top" value="/WEB-INF/views/top.jsp" />
+		<put-attribute name="side" value="/WEB-INF/views/side.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+	</definition>
+
+
+	<definition name="mypage" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/mypage.jsp" />
+  	</definition>
+  	<definition name="main" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+   	</definition>
+   	<definition name="login" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+   	</definition>
+  	<definition name="register" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/register.jsp" />
+  	</definition>
+ <!-- ================================================================================ -->
+   	<definition name="search" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/search.jsp" />
+   	</definition>
+   	<definition name="notice" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/notice.jsp" />
+   	</definition>
+ <!-- ================================================================================ -->  
+   	<definition name="recordin" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/recordin.jsp" />
+   	</definition>
+   	<definition name="record" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/record.jsp" />
+   	</definition>
+   	<definition name="record_detail" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/record_detail.jsp" />
+   	</definition>
+   	<definition name="record_page" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/record_page.jsp" />
+  	</definition>
+ <!-- ================================================================================ -->  
+   	<definition name="disc_in" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/disc_in.jsp" />
+  	</definition>
+   	<definition name="disc_list" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/disc_list.jsp" />
+  	</definition>
+  	<definition name="disc_update" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/disc_update.jsp" />
+  	</definition>
+  	<definition name="disc_detail" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/disc_detail.jsp" />
+  	</definition>
+   	<definition name="disc_page" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/disc_page.jsp" />
+  	</definition>
+  	<definition name="disc_replyout" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/disc_replyout.jsp" />
+  	</definition>
+   
+   
+   	<definition name="ex" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/ex.jsp" />
+   	</definition>
+   <!-- 
+   
+    <definition name="scoreout" extends="baseLayout">   
+      <put-attribute name="body" value="/WEB-INF/views/scoreout.jsp" />
+   	</definition>
+   
+    -->
+ </tiles-definitions>
+

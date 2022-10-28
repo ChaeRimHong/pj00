@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ezen.pj99.DiscReplyService">
+
+<resultMap type="com.ezen.pj99.DiscReplyDTO" id="dr">
+   <result property="dbno" column="dbno"/>
+   <result property="reno" column="reno"/>
+   <result property="rewriter" column="rewriter"/>
+   <result property="recontent" column="recontent"/>
+   <result property="redate" column="redate"/>
+</resultMap>
+
+
+   <select id="replycount" resultType="int">
+      select count(*) from pj09_disc_reply
+   </select>
+   
+   <select id="replylist" resultMap="dr">
+      select * from pj09_disc_reply where dbno = #{param1}
+   </select>
+   
+   <insert id="replyin">
+      insert into pj09_disc_reply 
+      values (#{param1},#{param2},#{param3})
+   </insert>
+   
+   <update id="replyupdate">
+      update pj09_disc_reply set recontent = #{recontent} WHERE reno = #{reno}
+   </update>
+   
+   <delete id="replydel">
+      delete pj09_disc_reply where rewriter = #{rewriter}
+   </delete>
+</mapper>

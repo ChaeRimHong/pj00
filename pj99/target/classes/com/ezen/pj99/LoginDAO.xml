@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ezen.pj99.LoginService">
+<!-- 
+대충 이런식으로 만들기
+CREATE TABLE user (
+	id INT UNSIGNED PRIMARY KEY UNIQUE KEY NOT NULL AUTO_INCREMENT COMMENT "유저 고유값",
+	user_id VARCHAR(50) NOT NULL COMMENT "유저 아이디",
+	password VARCHAR(130) NOT NULL COMMENT "비밀번호",
+	username VARCHAR(50) NOT NULL COMMENT "유저 이름",
+	phone_num VARCHAR(30) NOT NULL COMMENT "전화번호",
+	address VARCHAR(100) NOT NULL COMMENT "주소",
+	email VARCHAR(120) NOT NULL COMMENT "유저 이메일"
+) COMMENT "유저 테이블";
+ -->
+	<resultMap type="com.ezen.pj99.LoginDTO" id="ldto">
+		<result property="id" column="id" />
+		<result property="pw" column="pw" />
+		<result property="pwco" column="pwco" />
+		<result property="name" column="name" />
+		<result property="email" column="email" />
+	</resultMap>
+
+	<insert id="register">
+		INSERT INTO pj09_login(id,pw,pwco,name,email)
+		values(#{param1},#{param2},#{param3},#{param4},#{param5})
+	</insert>
+
+	<select id="login" resultMap="ldto">
+		SELECT * FROM pj09_login WHERE ID = #{param1} AND PW = #{param2}
+	</select>
+	
+	<!-- mypage -->
+	<select id="mypage" resultMap="ldto">
+		select * from pj09_login where id = #{param1}
+	</select>
+	
+	<!-- 
+	<update id="mypage_update" parameterType="ldto">
+		update pj09_login set pw= #{param1}, pwco= #{param2}, name= #{param3}
+		where id = #{param4}
+	</update>
+	 -->
+</mapper>

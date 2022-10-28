@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ezen.pj99.ReplyService">
+
+<resultMap type="com.ezen.pj99.RecordReplyDTO" id="rr">
+	<result property="bno" column="bno"/>
+	<result property="repno" column="repno"/>
+	<result property="repwriter" column="repwriter"/>
+	<result property="repcontent" column="repcontent"/>
+	<result property="repdate" column="repdate"/>
+</resultMap>
+
+	<select id="replycount" resultType="int">
+		select count(*) from pj09_record_reply
+	</select>
+	
+	<select id="replylist" resultMap="rr">
+		select * from pj09_record_reply where bno = #{param1} 
+	</select>
+	
+	<insert id="replyin">
+		insert into pj09_record_reply 
+		values (#{param1},#{param2},#{param3})
+	</insert>
+	
+	<update id="replymod">
+		update pj09_record_reply set REPCONTENT = #{REPCONTENT} WHERE REPNO = #{REPNO}  
+	</update>
+	
+	<delete id="replydel">
+		delete pj09_record_reply where repwriter = #{repwriter}
+	</delete>
+	
+</mapper>
